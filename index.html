@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lớp HK96 — Kỹ Thuật Hàng Không · ĐH Bách Khoa TP.HCM</title>
+<meta name="description" content="Tình bạn hơn 30 năm của tập thể lớp HK96 — Khoa Kỹ Thuật Hàng Không, Đại học Bách Khoa TP.HCM (1996–2001)." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#1a3a66;
+    --navy-2:#21477b;
+    --navy-deep:#13294d;
+    --gold:#bd9647;
+    --gold-light:#dcc079;
+    --gold-soft:#f3e7c9;
+    --champagne:#f7eed8;
+    --cream:#fdfbf6;
+    --ivory:#ffffff;
+    --blush:#f6f0ea;
+    --ink:#243149;
+    --muted:#7b8395;
+    --line:rgba(189,150,71,.32);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Be Vietnam Pro',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ===== Decorative dividers ===== */
+  .ornament{display:flex;align-items:center;justify-content:center;gap:16px;color:var(--gold);margin:0 auto}
+  .ornament::before,.ornament::after{content:"";height:1px;width:60px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .ornament::after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .ornament span{font-size:18px}
+
+  /* ===== Nav ===== */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:60;
+    background:rgba(6,24,47,.0);
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+    padding:18px 0;
+  }
+  header.nav.scrolled{
+    background:rgba(255,255,255,.92);
+    box-shadow:0 8px 30px rgba(26,58,102,.10);
+    padding:12px 0;
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+  .brand .emblem{
+    flex:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:23px;color:var(--gold);border:1.5px solid var(--gold);
+    background:radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), rgba(189,150,71,.12));
+    box-shadow:0 4px 16px rgba(120,90,25,.18), inset 0 0 12px rgba(255,255,255,.25);
+    transform:rotate(-12deg);transition:transform .4s ease, box-shadow .4s ease;
+  }
+  .brand:hover .emblem{transform:rotate(0deg) scale(1.06);box-shadow:0 8px 22px rgba(120,90,25,.28)}
+  .brand-txt{display:flex;flex-direction:column;line-height:1}
+  .brand .logo{
+    font-family:'Playfair Display',serif;font-weight:800;font-size:28px;
+    color:var(--gold);letter-spacing:1.5px;line-height:1;transition:color .35s;
+    text-shadow:0 1px 10px rgba(255,255,255,.45);
+  }
+  .brand small{
+    margin-top:6px;color:var(--navy);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;
+    font-weight:700;transition:color .35s;text-shadow:0 1px 7px rgba(255,255,255,.7);
+  }
+  .brand small i{color:var(--gold);font-style:normal;font-weight:700;margin:0 7px;text-shadow:none}
+  .nav.scrolled .brand .logo{text-shadow:none}
+  .nav.scrolled .brand small{color:var(--muted);text-shadow:none}
+  .nav-links{display:flex;gap:30px}
+  .nav-links a{color:var(--navy);font-size:14.5px;font-weight:600;letter-spacing:.3px;position:relative;transition:color .35s;text-shadow:0 1px 8px rgba(255,255,255,.55)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--gold);transition:width .3s}
+  .nav.scrolled .nav-links a{text-shadow:none}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a:hover::after{width:100%}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:26px;height:2px;background:var(--navy);transition:background .35s}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    text-align:center;color:#fff;overflow:hidden;
+    background-color:var(--cream);
+    background-image:
+      linear-gradient(180deg, rgba(248,244,235,.62), rgba(248,244,235,.70)),
+      url('lopDH/z7985881372840_9da425e23f2608ee5360f6c2466ebe9d.jpg');
+    background-repeat:no-repeat,no-repeat;
+    background-position:center, center center;
+    background-size:cover, 100% auto;
+    background-attachment:scroll,scroll;
+  }
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(248,244,235,.25),transparent 30% 62%,var(--cream) 99.5%)}
+  .hero-content{position:relative;z-index:3;padding:120px 24px 90px;max-width:920px}
+  .eyebrow{
+    display:inline-block;color:#9c7a2e;letter-spacing:5px;text-transform:uppercase;
+    font-size:13px;font-weight:700;margin-bottom:26px;text-shadow:0 1px 10px rgba(255,255,255,.8);
+  }
+  .hero h1{
+    font-size:clamp(54px,11vw,128px);font-weight:800;line-height:.95;letter-spacing:2px;
+    color:var(--navy-deep);text-shadow:0 2px 22px rgba(255,255,255,.85), 0 1px 3px rgba(255,255,255,.9);
+  }
+  .hero h1 .hk{
+    display:inline-block;position:relative;
+    background:linear-gradient(100deg,
+      #b6892b 0%, #875f17 12%, #c79a38 24%,
+      #f6e9b4 40%, #e3c163 50%, #c79a38 60%,
+      #875f17 78%, #c79a38 90%, #b6892b 100%);
+    background-size:230% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    -webkit-text-stroke:0.9px rgba(108,78,20,.55);
+    filter:
+      drop-shadow(0 1px 0 rgba(255,255,255,.45))
+      drop-shadow(0 3px 7px rgba(58,40,8,.42))
+      drop-shadow(0 1px 2px rgba(58,40,8,.30));
+    animation:goldShine 7s linear infinite;
+  }
+  @keyframes goldShine{0%{background-position:0% 50%}100%{background-position:230% 50%}}
+  @media (prefers-reduced-motion: reduce){ .hero h1 .hk{animation:none} }
+  .hero .sub{
+    margin:22px auto 0;max-width:680px;font-size:clamp(16px,2.2vw,20px);
+    color:var(--ink);font-weight:500;text-shadow:0 1px 12px rgba(255,255,255,.9);
+  }
+  .hero .meta{
+    margin-top:30px;display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:center;
+    color:var(--navy-2);font-size:14px;letter-spacing:1px;font-weight:500;text-shadow:0 1px 10px rgba(255,255,255,.85);
+  }
+  .hero .meta b{color:#9c7a2e;font-weight:700}
+  .cta-row{margin-top:42px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:15px 34px;border-radius:50px;font-weight:600;font-size:15px;letter-spacing:.5px;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#23180a;box-shadow:0 12px 30px rgba(201,162,75,.4)}
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(201,162,75,.55)}
+  .btn-ghost{border:1.5px solid var(--navy);color:var(--navy);background:rgba(255,255,255,.45)}
+  .btn-ghost:hover{background:var(--navy);color:#fff;transform:translateY(-3px)}
+  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:var(--navy-2);font-size:12px;letter-spacing:2px;animation:bob 2.2s ease-in-out infinite;text-shadow:0 1px 8px rgba(255,255,255,.8)}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  /* ===== Section base ===== */
+  section{position:relative}
+  .pad{padding:96px 0}
+  .sec-head{text-align:center;max-width:760px;margin:0 auto 56px}
+  .sec-head .kicker{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:13px;font-weight:600}
+  .sec-head h2{font-size:clamp(32px,5vw,52px);color:var(--navy);margin:14px 0 18px;line-height:1.1}
+  .sec-head p{color:var(--muted);font-size:17px}
+
+  /* ===== Story ===== */
+  .story{background:
+    linear-gradient(180deg,var(--cream),#fff);
+  }
+  .story-grid{display:grid;grid-template-columns:0.92fr 1.08fr;gap:60px;align-items:center}
+  .story-text h2{font-size:clamp(30px,4.5vw,46px);color:var(--navy);line-height:1.12;margin-bottom:22px}
+  .story-text p{color:#41495a;font-size:17px;margin-bottom:18px}
+  .story-text .lead{font-size:20px;color:var(--ink);font-weight:500}
+  .quote{
+    margin-top:28px;padding:24px 28px;border-left:3px solid var(--gold);
+    background:linear-gradient(90deg,rgba(201,162,75,.08),transparent);
+    font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--navy-2);
+  }
+  .story-photo{position:relative}
+  .story-photo .frame{
+    border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(6,24,47,.25);
+    border:6px solid #fff;outline:1px solid var(--line);
+  }
+  .story-photo .frame{cursor:zoom-in}
+  .story-photo .frame img{width:100%;height:auto;display:block}
+  .story-photo .caption{margin-top:38px;text-align:center;color:var(--muted);font-size:13.5px;font-style:italic}
+  .story-photo .caption .hint{color:#b6a981;font-style:normal;font-weight:400;font-size:11.5px;letter-spacing:.4px;opacity:.85}
+  .story-photo .badge{
+    position:absolute;bottom:-26px;left:-26px;background:var(--navy);color:#fff;
+    padding:22px 26px;border-radius:12px;box-shadow:0 20px 40px rgba(6,24,47,.35);
+    border:1px solid var(--line);
+  }
+  .story-photo .badge b{font-family:'Playfair Display',serif;font-size:38px;color:var(--gold-light);display:block;line-height:1}
+  .story-photo .badge span{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.75)}
+
+  /* ===== Stats ===== */
+  .stats{background:linear-gradient(135deg,var(--champagne),var(--blush));color:var(--navy);position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(189,150,71,.12),transparent 55%)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative;text-align:center}
+  .stat .num{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,62px);color:var(--gold);line-height:1}
+  .stat .lbl{margin-top:10px;color:var(--navy-2);font-size:15px;letter-spacing:.5px}
+  .stat{padding:10px;position:relative}
+  .stat:not(:last-child)::after{content:"";position:absolute;right:-15px;top:20%;height:60%;width:1px;background:rgba(189,150,71,.4)}
+
+  /* ===== Journey / Careers ===== */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .card{
+    background:#fff;border-radius:16px;padding:38px 32px;border:1px solid rgba(10,31,60,.07);
+    box-shadow:0 14px 40px rgba(6,24,47,.06);transition:transform .3s ease, box-shadow .3s ease;
+    position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-light),var(--gold))}
+  .card:hover{transform:translateY(-8px);box-shadow:0 26px 60px rgba(6,24,47,.14)}
+  .card .ic{
+    width:62px;height:62px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,rgba(201,162,75,.15),rgba(201,162,75,.05));color:var(--gold);
+    margin-bottom:22px;
+  }
+  .card .ic svg{width:30px;height:30px}
+  .card h3{font-size:23px;color:var(--navy);margin-bottom:12px}
+  .card p{color:var(--muted);font-size:15.5px}
+
+  /* ===== Gallery ===== */
+  .gallery{background:linear-gradient(180deg,#fff,var(--cream))}
+  .year-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:46px}
+  .year-tab{
+    padding:11px 26px;border-radius:50px;border:1.5px solid var(--line);background:#fff;
+    color:var(--navy);font-weight:600;font-size:15px;cursor:pointer;transition:all .25s ease;letter-spacing:.5px;
+  }
+  .year-tab:hover{border-color:var(--gold)}
+  .year-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 10px 24px rgba(6,24,47,.2)}
+  .year-note{text-align:center;color:var(--muted);margin:-30px auto 38px;max-width:640px;font-style:italic}
+  .grid-masonry{columns:3;column-gap:18px}
+  .grid-masonry .gitem{
+    break-inside:avoid;margin-bottom:18px;border-radius:12px;overflow:hidden;cursor:pointer;
+    position:relative;box-shadow:0 10px 30px rgba(6,24,47,.1);background:#0a1f3c;
+  }
+  .grid-masonry .gitem img{width:100%;transition:transform .6s ease;display:block}
+  .grid-masonry .gitem::after{
+    content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,24,47,.55));
+    opacity:0;transition:opacity .35s ease;
+  }
+  .grid-masonry .gitem:hover img{transform:scale(1.07)}
+  .grid-masonry .gitem:hover::after{opacity:1}
+  .grid-masonry .gitem .zoom{
+    position:absolute;right:12px;bottom:12px;z-index:2;color:#fff;opacity:0;transform:translateY(8px);
+    transition:all .35s ease;font-size:13px;letter-spacing:1px;
+  }
+  .grid-masonry .gitem:hover .zoom{opacity:1;transform:translateY(0)}
+
+  /* ===== Members ===== */
+  .members{background:linear-gradient(180deg,var(--cream),var(--ivory))}
+  .member-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .mcard{
+    background:#fff;border:1px solid rgba(26,58,102,.08);border-radius:16px;padding:30px 22px;text-align:center;
+    box-shadow:0 12px 34px rgba(26,58,102,.06);transition:transform .3s ease, box-shadow .3s ease;position:relative;overflow:hidden;
+  }
+  .mcard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-light),var(--gold))}
+  .mcard:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(26,58,102,.13)}
+  .mcard .avatar{
+    width:84px;height:84px;border-radius:50%;margin:4px auto 16px;display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--gold);
+    background:linear-gradient(135deg,var(--champagne),#fff);border:2px solid var(--gold);
+    box-shadow:0 8px 20px rgba(189,150,71,.18);
+  }
+  .mcard.empty .avatar{color:var(--muted);border-color:var(--line);border-style:dashed;background:var(--blush)}
+  .mcard h4{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:5px;line-height:1.2}
+  .mcard .role{color:var(--gold);font-size:13.5px;font-weight:600;letter-spacing:.3px;margin-bottom:4px}
+  .mcard .place{color:var(--muted);font-size:13px}
+  .mcard .place::before{content:"📍 "}
+  .mcard.empty h4{color:var(--muted)}
+  .member-hint{text-align:center;color:var(--muted);font-size:14px;margin-top:38px;font-style:italic}
+
+  /* ===== Lightbox ===== */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(4,14,28,.94);display:none;align-items:center;justify-content:center}
+  .lb.open{display:flex}
+  .lb img{max-width:90vw;max-height:86vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6);border:3px solid rgba(201,162,75,.4)}
+  .lb .x{position:absolute;top:24px;right:30px;color:#fff;font-size:34px;cursor:pointer;line-height:1;opacity:.8}
+  .lb .x:hover{opacity:1}
+  .lb .arrow{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:46px;cursor:pointer;padding:18px;opacity:.7;user-select:none}
+  .lb .arrow:hover{opacity:1;color:var(--gold-light)}
+  .lb .prev{left:14px}.lb .next{right:14px}
+  .lb .counter{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);letter-spacing:2px;font-size:13px}
+
+  /* ===== Values / Connection ===== */
+  .values{background:linear-gradient(180deg,var(--ivory),var(--blush));color:var(--ink);text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--line)}
+  .values::before{content:"";position:absolute;inset:0;background:
+    url('2026/z7985840410108_d19155fd63a4f5415b9e2c17e80787b2.jpg') center/cover;opacity:.06}
+  .values .wrap{position:relative}
+  .values h2{font-size:clamp(30px,5vw,50px);color:var(--navy);margin-bottom:20px}
+  .values .gold{color:var(--gold)}
+  .values p.big{max-width:760px;margin:0 auto 50px;font-size:19px;color:var(--ink);font-weight:400}
+  .vrow{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:20px}
+  .vrow .v{background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:16px;padding:32px 26px;box-shadow:0 14px 40px rgba(26,58,102,.06)}
+  .vrow .v h3{color:var(--gold);font-size:22px;margin-bottom:10px}
+  .vrow .v p{color:var(--muted);font-size:15.5px}
+
+  /* ===== CTA banner ===== */
+  .cta-banner{background:linear-gradient(135deg,var(--gold),var(--gold-light));text-align:center;color:#23180a}
+  .cta-banner h2{font-size:clamp(28px,4.5vw,46px);color:#1d1404;margin-bottom:14px}
+  .cta-banner p{font-size:18px;color:#3a2c0d;margin-bottom:30px}
+  .btn-navy{background:var(--navy);color:#fff;box-shadow:0 12px 30px rgba(6,24,47,.3)}
+  .btn-navy:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(6,24,47,.45)}
+
+  /* ===== Footer ===== */
+  footer{background:linear-gradient(135deg,var(--champagne),var(--blush));color:var(--navy-2);padding:60px 0 34px;text-align:center;border-top:1px solid var(--line)}
+  footer .logo{font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);font-weight:800;letter-spacing:1px}
+  footer .tag{margin:8px 0 22px;color:var(--muted);letter-spacing:1px;font-size:14px}
+  footer .fline{height:1px;width:120px;background:var(--gold);margin:22px auto;opacity:.6}
+  footer .copy{font-size:13px;color:var(--muted)}
+
+  .reveal{transition:opacity .8s ease, transform .8s ease}
+  html.anim .reveal{opacity:0;transform:translateY(34px)}
+  html.anim .reveal.in{opacity:1;transform:none}
+
+  /* ===== Responsive ===== */
+  @media(max-width:1080px){
+    .cards{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .burger{display:flex}
+    .nav-links.show{display:flex;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);flex-direction:column;padding:20px 24px;gap:18px;box-shadow:0 12px 30px rgba(26,58,102,.12);border-bottom:1px solid var(--line)}
+    .story-grid{grid-template-columns:1fr;gap:50px}
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+    .stat:not(:last-child)::after{display:none}
+    .vrow{grid-template-columns:1fr;gap:30px}
+    .grid-masonry{columns:2}
+    .hero{background-attachment:scroll}
+  }
+  @media(max-width:560px){
+    .grid-masonry{columns:1}
+    .cards{grid-template-columns:1fr}
+    .pad{padding:70px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#home" class="brand">
+      <span class="emblem">✈</span>
+      <span class="brand-txt">
+        <span class="logo">HK96</span>
+        <small>Khoa Kỹ Thuật Hàng Không<i>·</i>ĐHBK TP.HCM</small>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#story">Câu chuyện</a>
+      <a href="#journey">Hành trình</a>
+      <a href="#members">Thành viên</a>
+      <a href="#gallery">Khoảnh khắc</a>
+      <a href="#connect">Gắn kết</a>
+    </nav>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="eyebrow">Đại học Bách Khoa TP.HCM · 1996 — 2001</span>
+    <h1>Lớp <span class="hk">HK96</span></h1>
+    <p class="sub">Khoa Kỹ Thuật Hàng Không — một mái trường, một thời thanh xuân, và một tình bạn được gìn giữ trọn vẹn hơn ba thập kỷ.</p>
+    <div class="meta">
+      <span><b>30+</b> năm tình bạn</span>
+      <span><b>5</b> châu lục</span>
+      <span><b>1</b> gia đình HK96</span>
+    </div>
+    <div class="cta-row">
+      <a href="#gallery" class="btn btn-gold">Xem khoảnh khắc họp mặt</a>
+      <a href="#story" class="btn btn-ghost">Câu chuyện của chúng tôi</a>
+    </div>
+  </div>
+  <div class="scroll-hint">CUỘN XUỐNG ▾</div>
+</section>
+
+<!-- ===== STORY ===== -->
+<section class="story pad" id="story">
+  <div class="wrap">
+    <div class="ornament reveal"><span>✦</span></div>
+    <div class="story-grid" style="margin-top:34px">
+      <div class="story-text reveal">
+        <span class="sec-head" style="display:block"></span>
+        <p style="color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:13px;font-weight:600;margin-bottom:14px">Câu chuyện của chúng tôi</p>
+        <h2>Bắt đầu từ giảng đường,<br/>bền chặt suốt một đời.</h2>
+        <p class="lead">Năm 1996, chúng tôi gặp nhau dưới mái trường Đại học Bách Khoa TP.HCM, cùng theo đuổi giấc mơ chinh phục bầu trời qua ngành Kỹ Thuật Hàng Không.</p>
+        <p>Năm năm đèn sách (1996 – 2001) đã gắn kết những con người đến từ nhiều miền quê khác nhau thành một tập thể. Chúng tôi cùng nhau thức trắng mùa thi, cùng chia nhau ổ bánh mì giờ giải lao, cùng mơ về những chân trời rộng lớn.</p>
+        <p>Hơn 30 năm trôi qua, mỗi người một ngả đường, một quốc gia, một sự nghiệp — nhưng điều không bao giờ đổi thay chính là tình bạn HK96.</p>
+        <div class="quote">“Đường đời mỗi người một hướng, nhưng trái tim vẫn chung một lớp.”</div>
+      </div>
+      <div class="story-photo reveal">
+        <div class="frame" id="storyPhoto">
+          <img src="lopDH/z7985881372840_9da425e23f2608ee5360f6c2466ebe9d.jpg" alt="Tập thể lớp HK96 trước máy bay Vietnam Airlines" />
+        </div>
+        <div class="badge">
+          <b>1996</b>
+          <span>Nơi tất cả bắt đầu</span>
+        </div>
+        <div class="caption">Cả lớp HK96 <span class="hint">— bấm vào ảnh để phóng to</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats pad">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="num">30+</div><div class="lbl">Năm tình bạn keo sơn</div></div>
+    <div class="stat reveal"><div class="num">1996</div><div class="lbl">Khởi đầu thanh xuân</div></div>
+    <div class="stat reveal"><div class="num">5</div><div class="lbl">Mùa họp mặt liên tiếp</div></div>
+    <div class="stat reveal"><div class="num">∞</div><div class="lbl">Kỷ niệm không thể quên</div></div>
+  </div>
+</section>
+
+<!-- ===== JOURNEY / CAREERS ===== -->
+<section class="pad" id="journey">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Hành trình sau tốt nghiệp</span>
+      <h2>Mỗi người một chân trời</h2>
+      <p>Từ giảng đường Bách Khoa, các thành viên HK96 đã vươn ra khắp thế giới và thành công trên nhiều lĩnh vực — nhưng vẫn luôn tìm đường trở về với nhau.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+        </div>
+        <h3>Ngành Hàng Không</h3>
+        <p>Nhiều bạn tiếp tục theo đuổi đam mê thuở ban đầu, công tác trong ngành hàng không — từ kỹ thuật, bảo dưỡng đến vận hành khai thác bay.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 11h.01M15 11h.01M12 8h.01"/></svg>
+        </div>
+        <h3>Doanh nhân</h3>
+        <p>Không ít thành viên đã gây dựng doanh nghiệp riêng, làm chủ sự nghiệp và tạo dựng giá trị bền vững cho cộng đồng.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5M22 10v5"/></svg>
+        </div>
+        <h3>Giáo Sư, Tiến Sĩ, Giảng Viên</h3>
+        <p>Nhiều bạn định cư ở nước ngoài, trở thành giáo sư, tiến sĩ và giảng viên tại các trường đại học lớn, lan tỏa tri thức ra thế giới.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        </div>
+        <h3>Nhiều lĩnh vực khác</h3>
+        <p>Các thành viên còn thành công ở nhiều ngành nghề đa dạng — công nghệ, xây dựng, tài chính, giáo dục, y tế và nhiều lĩnh vực khác, ở cả trong và ngoài nước.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEMBERS ===== -->
+<section class="members pad" id="members">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Tập thể lớp HK96</span>
+      <h2>Những thành viên thân thương</h2>
+      <p>Mỗi cái tên là một mảnh ghép làm nên gia đình HK96. Danh sách dưới đây sẽ được cập nhật đầy đủ — trân trọng từng người bạn của chúng ta.</p>
+    </div>
+    <div class="member-grid reveal" id="memberGrid"></div>
+    <p class="member-hint reveal">💛 27 thành viên thân thương của lớp HK96 — thông tin nghề nghiệp & nơi sống sẽ được bổ sung dần.</p>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery pad" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Khoảnh khắc họp mặt</span>
+      <h2>Mỗi lần trở về là một lần sum họp</h2>
+      <p>Mỗi khi một người bạn từ phương xa trở về Việt Nam, chúng tôi lại tổ chức những buổi gặp gỡ thân mật — để tiếng cười năm xưa không bao giờ tắt.</p>
+    </div>
+
+    <div class="year-tabs reveal" id="yearTabs">
+      <button class="year-tab active" data-year="all">Tất cả</button>
+      <button class="year-tab" data-year="2026">2026</button>
+      <button class="year-tab" data-year="2025">2025</button>
+      <button class="year-tab" data-year="2024">2024</button>
+      <button class="year-tab" data-year="2023">2023</button>
+      <button class="year-tab" data-year="2022">2022</button>
+      <button class="year-tab" data-year="lopDH">Kỷ niệm xưa</button>
+    </div>
+
+    <p class="year-note reveal" id="yearNote">Họp mặt HK96 — Saigon Grill Bason, bên dòng sông Sài Gòn.</p>
+
+    <div class="grid-masonry reveal" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ===== VALUES / CONNECTION ===== -->
+<section class="values pad" id="connect">
+  <div class="wrap">
+    <div class="ornament reveal"><span>✦</span></div>
+    <h2 class="reveal" style="margin-top:24px">Hơn cả bạn học —<br/><span class="gold">chúng tôi là gia đình</span></h2>
+    <p class="big reveal">Thời gian có thể làm phai màu mái tóc, nhưng không thể làm nhạt tình bạn HK96. Chúng tôi ở đây để cùng nhau đi qua những thăng trầm, sẻ chia niềm vui và nâng đỡ nhau trong cuộc sống.</p>
+    <div class="vrow">
+      <div class="v reveal">
+        <h3>Kết nối</h3>
+        <p>Dù cách nhau nửa vòng trái đất, chỉ một tin nhắn là cả lớp lại quây quần. Khoảng cách địa lý chưa bao giờ là rào cản.</p>
+      </div>
+      <div class="v reveal">
+        <h3>Sẻ chia</h3>
+        <p>Vui buồn của một người là chuyện chung của cả lớp. Chúng tôi luôn có nhau trong những cột mốc quan trọng của cuộc đời.</p>
+      </div>
+      <div class="v reveal">
+        <h3>Nâng đỡ</h3>
+        <p>Từ công việc đến gia đình, anh em HK96 luôn sẵn lòng giúp đỡ nhau — bằng tất cả sự chân thành của tình bạn 30 năm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section class="cta-banner pad">
+  <div class="wrap reveal">
+    <h2>Hẹn gặp lại — HK96 ơi!</h2>
+    <p>Lần sau bạn về Việt Nam, hãy để cả lớp được đón bạn. Bàn tiệc luôn còn một chỗ dành riêng cho bạn.</p>
+    <a href="#gallery" class="btn btn-navy">Cùng nhìn lại những mùa họp mặt</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="logo">HK96</div>
+    <div class="tag">KỸ THUẬT HÀNG KHÔNG · ĐẠI HỌC BÁCH KHOA TP.HCM · 1996 – 2001</div>
+    <div class="ornament"><span>✦</span></div>
+    <div class="fline"></div>
+    <div class="copy">Trang lưu niệm tình bạn lớp HK96 · Gìn giữ ký ức — Nuôi dưỡng kết nối</div>
+  </div>
+</footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lb">
+  <span class="x" id="lbClose">&times;</span>
+  <span class="arrow prev" id="lbPrev">&#10094;</span>
+  <img id="lbImg" src="" alt="" />
+  <span class="arrow next" id="lbNext">&#10095;</span>
+  <div class="counter" id="lbCounter"></div>
+</div>
+
+<script>
+  // =====================================================================
+  //  DANH SÁCH THÀNH VIÊN HK96  —  CHỈ CẦN SỬA Ở ĐÂY
+  //  Thêm 1 bạn: chép 1 dòng và điền theo mẫu:
+  //     { ten:"Họ và Tên", nghe:"Công việc", noi:"Nơi sống" },
+  //  - "nghe" và "noi" có thể để trống "" nếu chưa rõ.
+  //  - Muốn giữ ô trống "đang cập nhật" thì để { ten:"" }.
+  // =====================================================================
+  const MEMBERS = [
+    { ten:"Nguyễn Quang Vinh", nghe:"", noi:"" },
+    { ten:"Trần Đức Vĩ", nghe:"", noi:"" },
+    { ten:"Trần Phương Nam", nghe:"", noi:"" },
+    { ten:"Nguyễn Văn Thái", nghe:"", noi:"" },
+    { ten:"Trịnh Quốc Cường", nghe:"", noi:"" },
+    { ten:"Nguyễn Thế Hoàng", nghe:"", noi:"" },
+    { ten:"Bùi Viết Hải", nghe:"", noi:"" },
+    { ten:"Nguyễn Đức Trang Thụy", nghe:"", noi:"" },
+    { ten:"Thái Minh Hoàng", nghe:"", noi:"" },
+    { ten:"Trịnh Chấn Thinh", nghe:"", noi:"" },
+    { ten:"Phạm Minh Vương", nghe:"", noi:"" },
+    { ten:"Ngô Khánh Hiếu", nghe:"", noi:"" },
+    { ten:"Nguyễn Ngọc Cường", nghe:"", noi:"" },
+    { ten:"Bùi Thanh Tân", nghe:"", noi:"" },
+    { ten:"Nguyễn Chí Công", nghe:"", noi:"" },
+    { ten:"Đào Thanh Phong", nghe:"", noi:"" },
+    { ten:"Lê Kim Quốc Phong", nghe:"", noi:"" },
+    { ten:"Nguyễn Tuấn Anh", nghe:"", noi:"" },
+    { ten:"Võ Huy Du", nghe:"", noi:"" },
+    { ten:"Nguyễn Đức Chương", nghe:"", noi:"" },
+    { ten:"Vương Thế Vinh", nghe:"", noi:"" },
+    { ten:"Lê Quang Vũ", nghe:"", noi:"" },
+    { ten:"Nguyễn Ngọc Thiện", nghe:"", noi:"" },
+    { ten:"Nhân", nghe:"", noi:"" },
+    { ten:"Huy Tàn", nghe:"", noi:"" },
+    { ten:"Lê Đức Vĩnh", nghe:"", noi:"" },
+    { ten:"Nguyễn Đình Trọng", nghe:"", noi:"" }
+  ];
+
+  function initials(name){
+    const p = name.trim().split(/\s+/);
+    if(p.length===1) return p[0].slice(0,2).toUpperCase();
+    return (p[p.length-2][0]+p[p.length-1][0]).toUpperCase();
+  }
+  function renderMembers(){
+    const mg = document.getElementById('memberGrid');
+    mg.innerHTML = MEMBERS.map((m,i)=>{
+      if(!m.ten || !m.ten.trim()){
+        return `<div class="mcard empty"><div class="avatar">?</div><h4>Đang cập nhật</h4><div class="role">Thành viên HK96</div></div>`;
+      }
+      return `<div class="mcard">
+        <div class="avatar">${initials(m.ten)}</div>
+        <h4>${m.ten}</h4>
+        ${m.nghe?`<div class="role">${m.nghe}</div>`:``}
+        ${m.noi?`<div class="place">${m.noi}</div>`:``}
+      </div>`;
+    }).join('');
+  }
+  renderMembers();
+
+  // ===== Image data =====
+  const DATA = {
+    "2026": {
+      note:"Họp mặt HK96 2026 — Saigon Grill Bason, bên dòng sông Sài Gòn rực rỡ.",
+      imgs:["z7985840281862_0b05a211cdeb1ca3d4a191fec32fca54.jpg","z7985840304078_fc751a94fae6f175b3801a771e37a601.jpg","z7985840343361_1c576117fce79bbfd2636ce95d583202.jpg","z7985840354690_c1a7be15584921090ec3abeb10ac0f0b.jpg","z7985840365944_69438c667aef5f08448eed0dc1368da9.jpg","z7985840370557_205ddfe25813c9f955cb16dcc9053012.jpg","z7985840410108_d19155fd63a4f5415b9e2c17e80787b2.jpg","z7985952057173_c86bffb67ab8d656c7305a7a8871d27e.jpg"]
+    },
+    "2025": {
+      note:"Mùa họp mặt 2025 — những cái ôm sau bao ngày xa cách.",
+      imgs:["z7985858384772_a15543965154c680ee0d9eaba734392a.jpg","z7985858387481_1216dc44e53b02ea12591f4f5d875b63.jpg","z7985858397017_867fe4852f3775a00e371774c934109e.jpg","z7985858416725_7132a1dd8f2402ef936daaab275140d8.jpg","z7985858446821_d13eb01976cc1bf524b7189934d5c4b8.jpg","z7985858446822_7ee23ef1b87ceb71385ce65cf212fdd4.jpg"]
+    },
+    "2024": {
+      note:"Họp mặt 2024 — cả gia đình HK96 cùng tụ hội.",
+      imgs:["z7985881347325_a9141d205c3f35aa4ae10f0cebb505bf.jpg","z7985881348766_6970285fff672b676d825a86bfeee30d.jpg","z7985881355379_a8458240d2ade810b9f8b30f3e38ff39.jpg","z7985881361613_21c472b1b72ec9b1f9f67be2d8a97d42.jpg","z7985881377874_1e6b9b57012430f4792c8ef84f714349.jpg","z7985881380392_809e02c40fe0dbdd54b2d3b8534dd681.jpg","z7985881388419_ecd04b1883f37a936cd72a20520383c1.jpg","z7985881395085_e5c66db6bb1c47d52fd74ee2ea48be07.jpg","z7985881395357_20ff506b04d60a31760c62de807631e1.jpg","z7985881411633_46cceb2718e11b81604dad7a157dc1ea.jpg","z7985881422383_3b60ae045ba4898e8ca08d5b92bbd5b5.jpg","z7985881429823_50e744e40a9924935d08e466dc96d0da.jpg","z7985881434013_b4a953736a39530147d72d95d0145739.jpg"]
+    },
+    "2023": {
+      note:"Họp mặt 2023 — tiếng cười rộn rã như thuở sinh viên.",
+      imgs:["z7985899973972_2377a1f69561fea0c8e94974e07bbf92.jpg","z7985899974312_d02e702c52e8f0ad7b1cd962ba211f40.jpg","z7985899992488_bb6d5061d0f17af0807f5f32f8ba6494.jpg","z7985899996254_cb80a52b39d348c7e5b7ea6649978c4d.jpg","z7985900004940_8452466122abebe20a32a0979256de92.jpg","z7985900006992_dc110b64c6c611e030c84311305e523f.jpg","z7985900016362_a834567792fcba2fdc2850b38134de08.jpg","z7985900020289_c52795beededbf6c23f873fb07e91557.jpg","z7985900027594_839d274c24f629d08d1e268a93ccc408.jpg","z7985900033768_51a7c15f9ad7227714e073c98ec50a88.jpg","z7985900040349_921839597855e2f278d691e5907e9508.jpg","z7985900059769_74c3be1dbcf2c4d1cf26d94323142454.jpg","z7985900063978_7c17acbfdb1c3ba6a4e03d0bcb50c2da.jpg","z7985900068329_cae00aaf7026d6b221fa9f9256928643.jpg"]
+    },
+    "2022": {
+      note:"Họp mặt 2022 — gặp lại nhau dưới tán dừa Sài Gòn.",
+      imgs:["z7985916302413_5a14fb8f0361ea6f5fcc420e835a0860.jpg","z7985916310271_124132de0646c6750e44a9c0f2598355.jpg","z7985916314741_1746d671ef740e5f8c233f21c7b6f8db.jpg","z7985916320368_51e217856acb547546081ca29a8c4c6c.jpg","z7985916328717_4834021dfda2be714b6e17890a5983ce.jpg"]
+    },
+    "lopDH": {
+      note:"Những tấm hình kỷ niệm — gia đình HK96 qua năm tháng.",
+      imgs:["z7985858381476_ebb1a06de32f5309b11e8a69a703dcd2.jpg","z7985858411252_961600258f572d257b668cdbb5b286d7.jpg","z7985881372840_9da425e23f2608ee5360f6c2466ebe9d.jpg","z7987675198069_553df8c8cbc60b9cb51eb062bdf99fc6.jpg","z7987675212108_88c88ea4c0411acb39645685cecb64bb.jpg","z7987691051550_c571c0186a5473489b9eb6a3bff41314.jpg"]
+    }
+  };
+
+  const grid = document.getElementById('galleryGrid');
+  const yearNote = document.getElementById('yearNote');
+  let currentImgs = [];
+  let galleryImgs = [];
+
+  const YEAR_ORDER = ["2026","2025","2024","2023","2022","lopDH"];
+  function loadYear(year){
+    let note;
+    if(year==='all'){
+      galleryImgs = [];
+      YEAR_ORDER.forEach(y => DATA[y].imgs.forEach(f => galleryImgs.push(y + "/" + f)));
+      note = "Toàn bộ khoảnh khắc của lớp HK96 qua các năm — " + galleryImgs.length + " tấm hình kỷ niệm.";
+    } else {
+      const d = DATA[year];
+      galleryImgs = d.imgs.map(f => year + "/" + f);
+      note = d.note;
+    }
+    yearNote.textContent = note;
+    grid.innerHTML = galleryImgs.map((src,i)=>`
+      <div class="gitem" data-i="${i}">
+        <img src="${src}" loading="lazy" alt="Khoảnh khắc lớp HK96" />
+        <span class="zoom">⤢ Phóng to</span>
+      </div>`).join('');
+    grid.querySelectorAll('.gitem').forEach(el=>{
+      el.addEventListener('click',()=>{ currentImgs = galleryImgs; openLB(parseInt(el.dataset.i)); });
+    });
+  }
+
+  // Bấm ảnh "1996" trong phần Câu chuyện để xem trọn cả lớp
+  const storyPhoto = document.getElementById('storyPhoto');
+  if(storyPhoto){
+    storyPhoto.addEventListener('click',()=>{
+      currentImgs = ['lopDH/z7985881372840_9da425e23f2608ee5360f6c2466ebe9d.jpg'];
+      openLB(0);
+    });
+  }
+
+  document.querySelectorAll('.year-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.year-tab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      loadYear(tab.dataset.year);
+    });
+  });
+
+  // ===== Lightbox =====
+  const lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'),
+        lbCounter=document.getElementById('lbCounter');
+  let lbIndex=0;
+  function openLB(i){lbIndex=i;showLB();lb.classList.add('open');document.body.style.overflow='hidden';}
+  function showLB(){lbImg.src=currentImgs[lbIndex];lbCounter.textContent=(lbIndex+1)+" / "+currentImgs.length;}
+  function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
+  function nav(d){lbIndex=(lbIndex+d+currentImgs.length)%currentImgs.length;showLB();}
+  document.getElementById('lbClose').onclick=closeLB;
+  document.getElementById('lbPrev').onclick=()=>nav(-1);
+  document.getElementById('lbNext').onclick=()=>nav(1);
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLB();
+    if(e.key==='ArrowLeft')nav(-1);
+    if(e.key==='ArrowRight')nav(1);
+  });
+
+  loadYear('all');
+
+  // ===== Nav scroll =====
+  const navBar=document.getElementById('nav');
+  function updateNav(){ navBar.classList.toggle('scrolled', window.scrollY>60); }
+  window.addEventListener('scroll', updateNav, {passive:true});
+  window.addEventListener('resize', updateNav);
+  window.addEventListener('load', updateNav);
+  updateNav(); // chạy ngay khi tải (kể cả khi mở bằng liên kết #)
+  document.getElementById('burger').onclick=()=>document.getElementById('navLinks').classList.toggle('show');
+  document.querySelectorAll('#navLinks a').forEach(a=>a.onclick=()=>document.getElementById('navLinks').classList.remove('show'));
+
+  // ===== Reveal on scroll (an toàn: luôn có nội dung) =====
+  const allReveal = document.querySelectorAll('.reveal');
+  function revealAll(){allReveal.forEach(el=>el.classList.add('in'));}
+  try{
+    document.documentElement.classList.add('anim'); // chỉ ẩn khi JS chạy được
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.08, rootMargin:"0px 0px -5% 0px"});
+    allReveal.forEach(el=>io.observe(el));
+    // Lưới phòng hờ: nếu vì lý do gì đó chưa hiện, bung tất cả sau 2.5s
+    setTimeout(revealAll, 2500);
+    window.addEventListener('load', ()=>setTimeout(revealAll, 800));
+  }catch(err){
+    document.documentElement.classList.remove('anim');
+    revealAll();
+  }
+</script>
+</body>
+</html>
