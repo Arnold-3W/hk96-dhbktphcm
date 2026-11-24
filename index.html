@@ -245,6 +245,15 @@
   }
   .grid-masonry .gitem:hover .zoom{opacity:1;transform:translateY(0)}
 
+
+  .ev{margin-bottom:56px}
+  .ev:last-child{margin-bottom:0}
+  .ev-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:0 0 22px;padding-bottom:14px;border-bottom:1px solid var(--line);position:relative}
+  .ev-head::before{content:"";position:absolute;left:0;bottom:-1px;width:72px;height:3px;background:linear-gradient(90deg,var(--gold-light),var(--gold))}
+  .ev-head h3{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);color:var(--navy);line-height:1.2;flex:1 1 100%}
+  .ev-head p{color:var(--muted);font-size:15.5px;flex:1 1 auto;margin:0}
+  .ev-count{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
   /* ===== Members ===== */
   .members{background:linear-gradient(180deg,var(--cream),var(--ivory))}
   .member-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
@@ -483,11 +492,12 @@
       <button class="year-tab" data-year="2023">2023</button>
       <button class="year-tab" data-year="2022">2022</button>
       <button class="year-tab" data-year="lopDH">Kỷ niệm xưa</button>
+      <button class="year-tab" data-year="thiep">Thiệp &amp; Thông báo</button>
     </div>
 
-    <p class="year-note reveal" id="yearNote">Họp mặt HK96 — Saigon Grill Bason, bên dòng sông Sài Gòn.</p>
+    <p class="year-note reveal" id="yearNote">Toàn bộ khoảnh khắc của lớp HK96 qua các năm.</p>
 
-    <div class="grid-masonry reveal" id="galleryGrid"></div>
+    <div class="gallery-body reveal" id="galleryGrid"></div>
   </div>
 </section>
 
@@ -604,33 +614,163 @@
   }
   renderMembers();
 
-  // ===== Image data =====
-  const DATA = {
-    "2026": {
-      note:"Họp mặt HK96 2026 — Saigon Grill Bason, bên dòng sông Sài Gòn rực rỡ.",
-      imgs:["z7985840281862_0b05a211cdeb1ca3d4a191fec32fca54.jpg","z7985840304078_fc751a94fae6f175b3801a771e37a601.jpg","z7985840343361_1c576117fce79bbfd2636ce95d583202.jpg","z7985840354690_c1a7be15584921090ec3abeb10ac0f0b.jpg","z7985840365944_69438c667aef5f08448eed0dc1368da9.jpg","z7985840370557_205ddfe25813c9f955cb16dcc9053012.jpg","z7985840410108_d19155fd63a4f5415b9e2c17e80787b2.jpg","z7985952057173_c86bffb67ab8d656c7305a7a8871d27e.jpg"]
-    },
-    "2025": {
-      note:"Mùa họp mặt 2025 — những cái ôm sau bao ngày xa cách.",
-      imgs:["z7985858384772_a15543965154c680ee0d9eaba734392a.jpg","z7985858387481_1216dc44e53b02ea12591f4f5d875b63.jpg","z7985858397017_867fe4852f3775a00e371774c934109e.jpg","z7985858416725_7132a1dd8f2402ef936daaab275140d8.jpg","z7985858446821_d13eb01976cc1bf524b7189934d5c4b8.jpg","z7985858446822_7ee23ef1b87ceb71385ce65cf212fdd4.jpg"]
-    },
-    "2024": {
-      note:"Họp mặt 2024 — cả gia đình HK96 cùng tụ hội.",
-      imgs:["z7985881347325_a9141d205c3f35aa4ae10f0cebb505bf.jpg","z7985881348766_6970285fff672b676d825a86bfeee30d.jpg","z7985881355379_a8458240d2ade810b9f8b30f3e38ff39.jpg","z7985881361613_21c472b1b72ec9b1f9f67be2d8a97d42.jpg","z7985881377874_1e6b9b57012430f4792c8ef84f714349.jpg","z7985881380392_809e02c40fe0dbdd54b2d3b8534dd681.jpg","z7985881388419_ecd04b1883f37a936cd72a20520383c1.jpg","z7985881395085_e5c66db6bb1c47d52fd74ee2ea48be07.jpg","z7985881395357_20ff506b04d60a31760c62de807631e1.jpg","z7985881411633_46cceb2718e11b81604dad7a157dc1ea.jpg","z7985881422383_3b60ae045ba4898e8ca08d5b92bbd5b5.jpg","z7985881429823_50e744e40a9924935d08e466dc96d0da.jpg","z7985881434013_b4a953736a39530147d72d95d0145739.jpg"]
-    },
-    "2023": {
-      note:"Họp mặt 2023 — tiếng cười rộn rã như thuở sinh viên.",
-      imgs:["z7985899973972_2377a1f69561fea0c8e94974e07bbf92.jpg","z7985899974312_d02e702c52e8f0ad7b1cd962ba211f40.jpg","z7985899992488_bb6d5061d0f17af0807f5f32f8ba6494.jpg","z7985899996254_cb80a52b39d348c7e5b7ea6649978c4d.jpg","z7985900004940_8452466122abebe20a32a0979256de92.jpg","z7985900006992_dc110b64c6c611e030c84311305e523f.jpg","z7985900016362_a834567792fcba2fdc2850b38134de08.jpg","z7985900020289_c52795beededbf6c23f873fb07e91557.jpg","z7985900027594_839d274c24f629d08d1e268a93ccc408.jpg","z7985900033768_51a7c15f9ad7227714e073c98ec50a88.jpg","z7985900040349_921839597855e2f278d691e5907e9508.jpg","z7985900059769_74c3be1dbcf2c4d1cf26d94323142454.jpg","z7985900063978_7c17acbfdb1c3ba6a4e03d0bcb50c2da.jpg","z7985900068329_cae00aaf7026d6b221fa9f9256928643.jpg"]
-    },
-    "2022": {
-      note:"Họp mặt 2022 — gặp lại nhau dưới tán dừa Sài Gòn.",
-      imgs:["z7985916302413_5a14fb8f0361ea6f5fcc420e835a0860.jpg","z7985916310271_124132de0646c6750e44a9c0f2598355.jpg","z7985916314741_1746d671ef740e5f8c233f21c7b6f8db.jpg","z7985916320368_51e217856acb547546081ca29a8c4c6c.jpg","z7985916328717_4834021dfda2be714b6e17890a5983ce.jpg"]
-    },
-    "lopDH": {
-      note:"Những tấm hình kỷ niệm — gia đình HK96 qua năm tháng.",
-      imgs:["z7985858381476_ebb1a06de32f5309b11e8a69a703dcd2.jpg","z7985858411252_961600258f572d257b668cdbb5b286d7.jpg","z7985881372840_9da425e23f2608ee5360f6c2466ebe9d.jpg","z7987675198069_553df8c8cbc60b9cb51eb062bdf99fc6.jpg","z7987675212108_88c88ea4c0411acb39645685cecb64bb.jpg","z7987691051550_c571c0186a5473489b9eb6a3bff41314.jpg","z7996429376724_d91595896beee9db6162342ba1b0531d.jpg"]
-    }
-  };
+  // ===== Image data (theo năm → sự kiện) =====
+  const SECTIONS = {
+ "2026": [
+  {
+   "t": "Họp mặt 08/08/2026 · Saigon Grill Bason",
+   "d": "Tối thứ Bảy trên tầng thượng nhìn ra dòng sông Sài Gòn — một buổi tối đáng nhớ của HK96.",
+   "imgs": [
+    "2026/hop-mat-08-08-2026-01.jpg",
+    "2026/hop-mat-08-08-2026-02.jpg",
+    "2026/hop-mat-08-08-2026-03.jpg"
+   ]
+  },
+  {
+   "t": "Họp mặt 05/07/2026 · Nhà anh Vinh, Him Lam",
+   "d": "Một chiều Chủ nhật ấm cúng, quây quần bên mâm cơm gia đình.",
+   "imgs": [
+    "2026/hop-mat-05-07-2026-01.jpg",
+    "2026/hop-mat-05-07-2026-02.jpg",
+    "2026/hop-mat-05-07-2026-03.jpg"
+   ]
+  },
+  {
+   "t": "Họp mặt 19/06/2026 · Saigon Grill Bason",
+   "d": "Hoàng hôn Sài Gòn bên bờ sông, nơi những người bạn gặp lại.",
+   "imgs": [
+    "2026/z7985840281862_0b05a211cdeb1ca3d4a191fec32fca54.jpg",
+    "2026/z7985840304078_fc751a94fae6f175b3801a771e37a601.jpg",
+    "2026/z7985840370557_205ddfe25813c9f955cb16dcc9053012.jpg"
+   ]
+  },
+  {
+   "t": "Chung vui ngày cưới",
+   "d": "Lớp HK96 cùng chia vui trong ngày trọng đại.",
+   "imgs": [
+    "2026/z7985840343361_1c576117fce79bbfd2636ce95d583202.jpg",
+    "2026/z7985952057173_c86bffb67ab8d656c7305a7a8871d27e.jpg"
+   ]
+  },
+  {
+   "t": "Cà phê gặp gỡ",
+   "d": "Những phút thư thả bên ly cà phê.",
+   "imgs": [
+    "2026/z7985840354690_c1a7be15584921090ec3abeb10ac0f0b.jpg"
+   ]
+  }
+ ],
+ "2025": [
+  {
+   "t": "Họp mặt cuối năm 2025",
+   "d": "Mùa họp mặt Reunion Party — những cái ôm sau bao ngày xa cách.",
+   "imgs": [
+    "2025/z7985858384772_a15543965154c680ee0d9eaba734392a.jpg",
+    "2025/z7985858387481_1216dc44e53b02ea12591f4f5d875b63.jpg",
+    "2025/z7985858397017_867fe4852f3775a00e371774c934109e.jpg",
+    "2025/z7985858446821_d13eb01976cc1bf524b7189934d5c4b8.jpg",
+    "2025/z7985858446822_7ee23ef1b87ceb71385ce65cf212fdd4.jpg"
+   ]
+  },
+  {
+   "t": "Những buổi gặp gỡ thân tình",
+   "d": "Vài người bạn, vài ly bia và rất nhiều chuyện cũ.",
+   "imgs": [
+    "2025/gap-mat-ban-be-01.jpg",
+    "2025/gap-mat-ban-be-02.jpg"
+   ]
+  }
+ ],
+ "2024": [
+  {
+   "t": "",
+   "d": "",
+   "imgs": [
+    "2024/z7985881347325_a9141d205c3f35aa4ae10f0cebb505bf.jpg",
+    "2024/z7985881348766_6970285fff672b676d825a86bfeee30d.jpg",
+    "2024/z7985881355379_a8458240d2ade810b9f8b30f3e38ff39.jpg",
+    "2024/z7985881361613_21c472b1b72ec9b1f9f67be2d8a97d42.jpg",
+    "2024/z7985881377874_1e6b9b57012430f4792c8ef84f714349.jpg",
+    "2024/z7985881380392_809e02c40fe0dbdd54b2d3b8534dd681.jpg",
+    "2024/z7985881388419_ecd04b1883f37a936cd72a20520383c1.jpg",
+    "2024/z7985881395085_e5c66db6bb1c47d52fd74ee2ea48be07.jpg",
+    "2024/z7985881395357_20ff506b04d60a31760c62de807631e1.jpg",
+    "2024/z7985881411633_46cceb2718e11b81604dad7a157dc1ea.jpg",
+    "2024/z7985881422383_3b60ae045ba4898e8ca08d5b92bbd5b5.jpg",
+    "2024/z7985881429823_50e744e40a9924935d08e466dc96d0da.jpg",
+    "2024/z7985881434013_b4a953736a39530147d72d95d0145739.jpg"
+   ]
+  }
+ ],
+ "2023": [
+  {
+   "t": "",
+   "d": "",
+   "imgs": [
+    "2023/z7985899973972_2377a1f69561fea0c8e94974e07bbf92.jpg",
+    "2023/z7985899974312_d02e702c52e8f0ad7b1cd962ba211f40.jpg",
+    "2023/z7985899992488_bb6d5061d0f17af0807f5f32f8ba6494.jpg",
+    "2023/z7985899996254_cb80a52b39d348c7e5b7ea6649978c4d.jpg",
+    "2023/z7985900004940_8452466122abebe20a32a0979256de92.jpg",
+    "2023/z7985900006992_dc110b64c6c611e030c84311305e523f.jpg",
+    "2023/z7985900016362_a834567792fcba2fdc2850b38134de08.jpg",
+    "2023/z7985900020289_c52795beededbf6c23f873fb07e91557.jpg",
+    "2023/z7985900027594_839d274c24f629d08d1e268a93ccc408.jpg",
+    "2023/z7985900033768_51a7c15f9ad7227714e073c98ec50a88.jpg",
+    "2023/z7985900040349_921839597855e2f278d691e5907e9508.jpg",
+    "2023/z7985900059769_74c3be1dbcf2c4d1cf26d94323142454.jpg",
+    "2023/z7985900063978_7c17acbfdb1c3ba6a4e03d0bcb50c2da.jpg",
+    "2023/z7985900068329_cae00aaf7026d6b221fa9f9256928643.jpg"
+   ]
+  }
+ ],
+ "2022": [
+  {
+   "t": "",
+   "d": "",
+   "imgs": [
+    "2022/z7985916302413_5a14fb8f0361ea6f5fcc420e835a0860.jpg",
+    "2022/z7985916310271_124132de0646c6750e44a9c0f2598355.jpg",
+    "2022/z7985916314741_1746d671ef740e5f8c233f21c7b6f8db.jpg",
+    "2022/z7985916320368_51e217856acb547546081ca29a8c4c6c.jpg",
+    "2022/z7985916328717_4834021dfda2be714b6e17890a5983ce.jpg"
+   ]
+  }
+ ],
+ "lopDH": [
+  {
+   "t": "",
+   "d": "",
+   "imgs": [
+    "lopDH/z7985858381476_ebb1a06de32f5309b11e8a69a703dcd2.jpg",
+    "lopDH/z7985858411252_961600258f572d257b668cdbb5b286d7.jpg",
+    "lopDH/z7985881372840_9da425e23f2608ee5360f6c2466ebe9d.jpg",
+    "lopDH/z7987675198069_553df8c8cbc60b9cb51eb062bdf99fc6.jpg",
+    "lopDH/z7987675212108_88c88ea4c0411acb39645685cecb64bb.jpg",
+    "lopDH/z7987691051550_c571c0186a5473489b9eb6a3bff41314.jpg",
+    "lopDH/z7996429376724_d91595896beee9db6162342ba1b0531d.jpg"
+   ]
+  }
+ ],
+ "thiep": [
+  {
+   "t": "Thiệp & thông báo của lớp",
+   "d": "Thiệp chúc mừng, thư mời và lịch họp mặt HK96 — sắp xếp từ mới đến cũ.",
+   "imgs": [
+    "thiep/thiep-ngay-van-hoa-24-11-2026.jpg",
+    "thiep/thiep-hop-mat-08-08-2026.jpg",
+    "thiep/thiep-hop-mat-05-07-2026.jpg",
+    "thiep/thuc-don-hop-mat-05-07-2026.jpg",
+    "2026/z7985840365944_69438c667aef5f08448eed0dc1368da9.jpg",
+    "2026/z7985840410108_d19155fd63a4f5415b9e2c17e80787b2.jpg",
+    "thiep/thiep-giang-sinh-2025.jpg",
+    "2025/z7985858416725_7132a1dd8f2402ef936daaab275140d8.jpg"
+   ]
+  }
+ ]
+};
+  const YEAR_NOTE = {"2026": "Năm 2026 — những mùa họp mặt rực rỡ bên dòng sông Sài Gòn.", "2025": "Mùa họp mặt 2025 — những cái ôm sau bao ngày xa cách.", "2024": "Họp mặt 2024 — cả gia đình HK96 cùng tụ hội.", "2023": "Họp mặt 2023 — tiếng cười rộn rã như thuở sinh viên.", "2022": "Họp mặt 2022 — gặp lại nhau dưới tán dừa Sài Gòn.", "lopDH": "Những tấm hình kỷ niệm — gia đình HK96 qua năm tháng.", "thiep": "Thiệp mời, thiệp chúc mừng và lịch họp mặt của lớp HK96."};
+  const YEAR_LABEL = {"2026": "Năm 2026", "2025": "Năm 2025", "2024": "Năm 2024", "2023": "Năm 2023", "2022": "Năm 2022", "lopDH": "Kỷ niệm xưa"};
 
   const grid = document.getElementById('galleryGrid');
   const yearNote = document.getElementById('yearNote');
@@ -638,23 +778,30 @@
   let galleryImgs = [];
 
   const YEAR_ORDER = ["2026","2025","2024","2023","2022","lopDH"];
-  function loadYear(year){
-    let note;
-    if(year==='all'){
-      galleryImgs = [];
-      YEAR_ORDER.forEach(y => DATA[y].imgs.forEach(f => galleryImgs.push(y + "/" + f)));
-      note = "Toàn bộ khoảnh khắc của lớp HK96 qua các năm — " + galleryImgs.length + " tấm hình kỷ niệm.";
-    } else {
-      const d = DATA[year];
-      galleryImgs = d.imgs.map(f => year + "/" + f);
-      note = d.note;
-    }
-    yearNote.textContent = note;
-    grid.innerHTML = galleryImgs.map((src,i)=>`
-      <div class="gitem" data-i="${i}">
-        <img src="${src}" loading="lazy" alt="Khoảnh khắc lớp HK96" />
+  function sectionHTML(title, desc, imgs, startIdx){
+    const head = title ? `<div class="ev-head"><h3>${title}</h3>${desc?`<p>${desc}</p>`:''}<span class="ev-count">${imgs.length} ảnh</span></div>` : '';
+    const items = imgs.map((src,k)=>`
+      <div class="gitem" data-i="${startIdx+k}">
+        <img src="${src}" loading="lazy" alt="${title?title+' — ':''}Lớp HK96" />
         <span class="zoom">⤢ Phóng to</span>
       </div>`).join('');
+    return `<section class="ev">${head}<div class="grid-masonry">${items}</div></section>`;
+  }
+  function loadYear(year){
+    galleryImgs = [];
+    let html = '';
+    const years = year==='all' ? YEAR_ORDER : [year];
+    years.forEach(y=>{
+      SECTIONS[y].forEach(s=>{
+        const title = s.t || (year==='all' ? YEAR_LABEL[y] : '');
+        html += sectionHTML(title, s.d, s.imgs, galleryImgs.length);
+        s.imgs.forEach(i=>galleryImgs.push(i));
+      });
+    });
+    yearNote.textContent = year==='all'
+      ? "Toàn bộ khoảnh khắc của lớp HK96 qua các năm — " + galleryImgs.length + " tấm hình kỷ niệm."
+      : YEAR_NOTE[year];
+    grid.innerHTML = html;
     grid.querySelectorAll('.gitem').forEach(el=>{
       el.addEventListener('click',()=>{ currentImgs = galleryImgs; openLB(parseInt(el.dataset.i)); });
     });
